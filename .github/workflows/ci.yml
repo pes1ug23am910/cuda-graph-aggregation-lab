@@ -1,0 +1,26 @@
+name: Build and verify
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cpu:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Configure portable build
+        run: cmake -S . -B build -DGRAPHLAB_CUDA=OFF -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build --config Release --parallel
+      - name: Contract and CLI tests
+        run: ctest --test-dir build -C Release --output-on-failure
+      - name: Reporting tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v

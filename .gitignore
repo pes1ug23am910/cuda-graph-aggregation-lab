@@ -1,0 +1,15 @@
+/build*/
+/.tools/
+/.venv/
+/__pycache__/
+*.pyc
+*.ncu-rep
+*.nsys-rep
+*.sqlite
+*.log
+.env
+.env.*
+*.pem
+
+/results/
+*.qdstrm
