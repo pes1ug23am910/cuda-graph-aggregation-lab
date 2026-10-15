@@ -324,16 +324,24 @@ static int bench(const Options &o) {
             uint64_t memory = 0, workspace = 0, budget = 0, reserve = 0;
             std::string execution_path = "host_serial";
             std::vector<float> y;
+            double max_abs_error = 0, max_scaled_error = 0;
+            auto check_stage = [&](const std::vector<float> &values) {
+                const auto result = verify(g, r, values);
+                if (!result.passed)
+                    throw std::runtime_error("numerical_mismatch: " + result.reason);
+                max_abs_error = std::max(max_abs_error, result.max_abs_error);
+                max_scaled_error = std::max(max_scaled_error, result.max_scaled_error);
+            };
             if (backend == "cpu") {
                 y = serial(g);
-                check_output(g, r, y);
+                check_stage(y);
                 for (int64_t i = 0; i < warmup; ++i)
                     y = serial(g);
                 auto begin = Clock::now();
                 for (int64_t i = 0; i < calls; ++i)
                     y = serial(g);
                 resident_ms = elapsed(begin);
-                check_output(g, r, y);
+                check_stage(y);
                 begin = Clock::now();
                 y = serial(g);
                 prepared_wall_ms = elapsed(begin);
@@ -343,7 +351,7 @@ static int bench(const Options &o) {
                 {
                     cuda::Session session(g, variant(backend));
                     y = session.output();
-                    check_output(g, r, y);
+                    check_stage(y);
                     preparation_ms = session.preparation_ms();
                     memory = session.memory_bytes();
                     workspace = session.workspace_bytes();
@@ -353,14 +361,14 @@ static int bench(const Options &o) {
                     session.warmup(static_cast<size_t>(warmup));
                     resident_ms = session.resident_batch(static_cast<size_t>(calls));
                     y = session.download_output();
-                    check_output(g, r, y);
+                    check_stage(y);
                     auto prepared = session.prepared_call();
                     y = std::move(prepared.output);
                     prepared_wall_ms = prepared.wall_ms;
                     h2d_ms = prepared.h2d_ms;
                     aggregation_ms = prepared.aggregation_ms;
                     d2h_ms = prepared.d2h_ms;
-                    check_output(g, r, y);
+                    check_stage(y);
                 }
                 auto cold = Clock::now();
                 {
@@ -372,8 +380,7 @@ static int bench(const Options &o) {
                 throw std::runtime_error("CUDA disabled at build time");
 #endif
             }
-            auto check = verify(g, r, y);
-            check_output(g, r, y);
+            check_stage(y);
             std::cout
                 << std::setprecision(17)
                 << R"({"type":"measurement","schema":1,"status":"passed","contract":"csr-mean-v1","smoke":)"
@@ -388,7 +395,9 @@ static int bench(const Options &o) {
                 << R"(,"host_peak_estimate_bytes":)"
                 << (2ULL * (g.offsets.size() + g.columns.size()) * sizeof(int32_t) +
                     36ULL * g.x.size())
-                << R"(,"numerical_policy":"fp32_rn_gradual_underflow_fmad_false","cusparse_algorithm":"CSR_ALG2","preprocessing":"none")"
+                << R"(,"numerical_policy":"fp32_degree_aware_bound","custom_cuda_flags":"ftz=false,prec-div=true,fmad=false","cusparse_algorithm":)"
+                << (backend == "cusparse" ? quote("CSR_ALG2") : "null")
+                << R"(,"library_preprocessing":"none","error_scope":"maximum_across_checked_stages")"
                 << R"(,"fingerprint":)" << quote(id) << R"(,"group":)" << group + offset
                 << R"(,"calls":)" << calls << R"(,"warmup":)" << warmup << R"(,"path":)"
                 << quote(execution_path) << R"(,"resident_boundary":)"
@@ -403,8 +412,7 @@ static int bench(const Options &o) {
                 << oracle_ms << R"(,"device_memory_bytes":)" << memory << R"(,"workspace_bytes":)"
                 << workspace << R"(,"memory_budget_bytes":)" << budget
                 << R"(,"overhead_reserve_bytes":)" << reserve << R"(,"max_abs_error":)"
-                << check.max_abs_error << R"(,"max_scaled_error":)" << check.max_scaled_error
-                << "}\n"
+                << max_abs_error << R"(,"max_scaled_error":)" << max_scaled_error << "}\n"
                 << std::flush;
         }
     }
