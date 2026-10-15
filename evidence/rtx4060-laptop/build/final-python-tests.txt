@@ -1,0 +1,48 @@
+Started UTC: 2026-10-15T20:42:21.732Z
+Command: $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH; $env:GRAPHLAB_EXE = '<repository>\build-cpu\graphlab.exe'; & '<repository>\.tools\python\python.exe' -m unittest discover -s tests -p 'test_*.py' -v; exit $LASTEXITCODE
+Exit code: 0
+
+STDOUT
+
+STDERR
+test_generated_fixture_survives_exact_write_load (test_cli.CliTests.test_generated_fixture_survives_exact_write_load) ... ok
+test_group_offset_overflow_is_rejected (test_cli.CliTests.test_group_offset_overflow_is_rejected) ... ok
+test_hostile_maximum_header_rejected_before_allocation (test_cli.CliTests.test_hostile_maximum_header_rejected_before_allocation) ... ok
+test_large_offset_and_edge_allocation_rejected (test_cli.CliTests.test_large_offset_and_edge_allocation_rejected) ... ok
+test_malformed_headers (test_cli.CliTests.test_malformed_headers) ... ok
+test_maximum_safe_group_offset_remains_valid (test_cli.CliTests.test_maximum_safe_group_offset_remains_valid) ... ok
+test_subnormal_and_signed_zero_fixture_roundtrip (test_cli.CliTests.test_subnormal_and_signed_zero_fixture_roundtrip) ... ok
+test_trailing_data_and_nonfinite_features (test_cli.CliTests.test_trailing_data_and_nonfinite_features) ... ok
+test_truncated_and_malformed_arrays (test_cli.CliTests.test_truncated_and_malformed_arrays) ... ok
+test_unknown_backend_is_rejected (test_cli.CliTests.test_unknown_backend_is_rejected) ... ok
+test_backend_subsets_and_reordering_rejected_before_side_effects (test_reporting.CampaignTests.test_backend_subsets_and_reordering_rejected_before_side_effects) ... ok
+test_failed_process_preserves_stdout_and_exit_code (test_reporting.CampaignTests.test_failed_process_preserves_stdout_and_exit_code) ... ok
+test_gpu_fixture_uses_one_process_for_all_groups (test_reporting.CampaignTests.test_gpu_fixture_uses_one_process_for_all_groups) ... ok
+test_gpu_partial_output_is_retained_but_not_counted (test_reporting.CampaignTests.test_gpu_partial_output_is_retained_but_not_counted) ... ok
+test_invalid_success_output_is_a_failure (test_reporting.CampaignTests.test_invalid_success_output_is_a_failure) ... ok
+test_missing_git_does_not_prevent_campaign (test_reporting.CampaignTests.test_missing_git_does_not_prevent_campaign) ... ok
+test_preflight_failure_finalizes_manifest (test_reporting.CampaignTests.test_preflight_failure_finalizes_manifest) ... ok
+test_valid_smoke_campaign_retains_every_batch (test_reporting.CampaignTests.test_valid_smoke_campaign_retains_every_batch) ... ok
+test_all_backends_alternate_within_one_fixture (test_reporting.InvocationValidationTests.test_all_backends_alternate_within_one_fixture) ... ok
+test_existing_fixture_identity_cannot_change (test_reporting.InvocationValidationTests.test_existing_fixture_identity_cannot_change) ... ok
+test_identity_mismatch_and_partial_failure_are_rejected (test_reporting.InvocationValidationTests.test_identity_mismatch_and_partial_failure_are_rejected) ... ok
+test_missing_extra_duplicate_and_reordered_batches_rejected (test_reporting.InvocationValidationTests.test_missing_extra_duplicate_and_reordered_batches_rejected) ... ok
+test_cli_retains_malformed_json_and_writes_strict_json (test_reporting.SummaryTests.test_cli_retains_malformed_json_and_writes_strict_json) ... ok
+test_complete_group_quantiles (test_reporting.SummaryTests.test_complete_group_quantiles) ... ok
+test_diagnostic_for_requested_input_blocks_complete_label (test_reporting.SummaryTests.test_diagnostic_for_requested_input_blocks_complete_label) ... ok
+test_expected_campaign_ids_cannot_have_holes (test_reporting.SummaryTests.test_expected_campaign_ids_cannot_have_holes) ... ok
+test_failed_measurements_are_retained_and_excluded (test_reporting.SummaryTests.test_failed_measurements_are_retained_and_excluded) ... ok
+test_failed_retry_blocks_complete_label (test_reporting.SummaryTests.test_failed_retry_blocks_complete_label) ... ok
+test_incomplete_and_duplicate_group_ids (test_reporting.SummaryTests.test_incomplete_and_duplicate_group_ids) ... ok
+test_insufficient_repetitions_remain_visible (test_reporting.SummaryTests.test_insufficient_repetitions_remain_visible) ... ok
+test_mismatched_identity_never_combines_groups (test_reporting.SummaryTests.test_mismatched_identity_never_combines_groups) ... ok
+test_missing_identity_field_is_retained_as_diagnostic (test_reporting.SummaryTests.test_missing_identity_field_is_retained_as_diagnostic) ... ok
+test_nonfinite_and_negative_latency_cannot_enter_summary (test_reporting.SummaryTests.test_nonfinite_and_negative_latency_cannot_enter_summary) ... ok
+test_quantile_interpolation_and_singleton (test_reporting.SummaryTests.test_quantile_interpolation_and_singleton) ... ok
+test_schema_and_contract_mismatch_are_diagnostics (test_reporting.SummaryTests.test_schema_and_contract_mismatch_are_diagnostics) ... ok
+test_smoke_is_excluded (test_reporting.SummaryTests.test_smoke_is_excluded) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 1.467s
+
+OK

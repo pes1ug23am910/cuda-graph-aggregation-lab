@@ -17,7 +17,8 @@ def executable():
             raise AssertionError("GRAPHLAB_EXE does not point to an existing executable: " + str(selected))
         return selected
     names = ["graphlab.exe", "graphlab"] if os.name == "nt" else ["graphlab", "graphlab.exe"]
-    for directory in (ROOT / "build-cpu", ROOT / "build" / "Release", ROOT / "build", ROOT / "build" / "Debug"):
+    for directory in (ROOT / "build-cpu", ROOT / "build-cpu" / "Release", ROOT / "build-cpu" / "Debug",
+                      ROOT / "build" / "Release", ROOT / "build", ROOT / "build" / "Debug"):
         for name in names:
             candidate = directory / name
             if candidate.is_file():

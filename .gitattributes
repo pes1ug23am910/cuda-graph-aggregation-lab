@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.png binary
 *.pdf binary
+# Preserve evidence bytes, including original line endings and log whitespace.
+evidence/** -text -whitespace

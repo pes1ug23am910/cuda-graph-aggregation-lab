@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "purpose": "Separate exploratory profiler captures; not ordinary benchmark measurements",
+  "versions": {
+    "nsight_systems": "2025.1.3.140",
+    "compute_sanitizer": "2025.2.1.0"
+  },
+  "fixture": {
+    "nodes": 4096,
+    "features": 64,
+    "family": "skewed",
+    "seed": 42
+  },
+  "benchmark_arguments": [
+    "bench",
+    "--backend",
+    "<backend>",
+    "--nodes",
+    "4096",
+    "--features",
+    "64",
+    "--family",
+    "skewed",
+    "--seed",
+    "42",
+    "--groups",
+    "1",
+    "--calls",
+    "10",
+    "--warmup",
+    "3",
+    "--smoke"
+  ],
+  "profile_arguments": [
+    "profile",
+    "--trace=cuda",
+    "--sample=none",
+    "--cpuctxsw=none",
+    "--stats=true",
+    "--force-overwrite=true",
+    "--output",
+    "<backend>-timeline",
+    "<graphlab>"
+  ],
+  "captures": [
+    {
+      "backend": "naive",
+      "file": "naive-timeline.nsys-rep",
+      "bytes": 41962,
+      "sha256": "3862283588cfc652d84063057c8d422ee256e17f132ab131d192219a5c3811ea",
+      "published": false,
+      "reason": "Raw captures retained locally because they may contain absolute paths. Unchanged CSV exports are published."
+    },
+    {
+      "backend": "row_split",
+      "file": "row_split-timeline.nsys-rep",
+      "bytes": 42323,
+      "sha256": "87795a24ab4b80cb6d1739faa94b7d964ea20f71e394e9c278271b0e4e8d654e",
+      "published": false,
+      "reason": "Raw captures retained locally because they may contain absolute paths. Unchanged CSV exports are published."
+    },
+    {
+      "backend": "cusparse",
+      "file": "cusparse-timeline.nsys-rep",
+      "bytes": 52758,
+      "sha256": "64090c9b150c66893312533f37e73d02e4604ff23c61cebfa3bab456783faf29",
+      "published": false,
+      "reason": "Raw captures retained locally because they may contain absolute paths. Unchanged CSV exports are published."
+    }
+  ],
+  "sanitizer": {
+    "status": "instrumentation_unavailable",
+    "exit_code": 99,
+    "reason": "WDDM debugger interface could not initialize; no administrator settings changed",
+    "subsequent_modes": "not_run"
+  },
+  "import_note": "Initial Systems import hit the Windows path-length limit. Importing the retained capture with the same tool from a shorter path succeeded; CSV exports come from successfully imported reports."
+}

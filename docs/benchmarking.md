@@ -1,6 +1,6 @@
 # Reproduction and measurement
 
-The frozen matrix has 54 inputs: N in {4096,65536}, F in {32,64,128}, family in {regular8,regular32,skewed}, and seed in {7,42,2026}. Regular degree is capped at N. Skewed rows with index divisible by 64 have degree min(2048,N); remaining rows draw degree min(1+bounded(8),N). the exact PRNG and consumption order live in src/core.cpp and are protected by golden-byte tests. Edges are unique, sorted and directed. Fixtures are synthetic; results do not establish whole-model or application acceleration.
+The frozen matrix has 54 inputs: N in {4096,65536}, F in {32,64,128}, family in {regular8,regular32,skewed}, and seed in {7,42,2026}. Regular degree is capped at N. Skewed rows with index divisible by 64 have degree min(2048,N); remaining rows draw degree min(1+bounded(8),N). The exact PRNG and consumption order live in src/core.cpp and are protected by golden-byte tests. Edges are unique, sorted and directed. Fixtures are synthetic; results do not establish whole-model or application acceleration.
 
 Each implementation receives identical fixture bytes. Campaigns use 20 warmups, five groups and 100 calls per timed batch, alternating backend order by group. All batch totals are retained. A per-call average is the total divided by the disclosed batch size; it is not a distribution of individually timed calls. Summaries show median, Q1/Q3 and the complete observed range. Smoke runs are excluded.
 

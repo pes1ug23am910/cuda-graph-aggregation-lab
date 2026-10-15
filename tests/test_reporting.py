@@ -173,6 +173,26 @@ class InvocationValidationTests(unittest.TestCase):
 
 
 class CampaignTests(unittest.TestCase):
+    def test_backend_subsets_and_reordering_rejected_before_side_effects(self):
+        for selected in ("naive", "naive,cusparse", "cusparse,row_split,naive"):
+            with self.subTest(backends=selected), tempfile.TemporaryDirectory() as directory:
+                folder = Path(directory)
+                exe = folder / "graphlab.exe"
+                exe.write_bytes(b"unused executable fixture")
+                output = folder / "campaign"
+                argv = ["run_campaign", "--exe", str(exe), "--output", str(output),
+                        "--backends", selected]
+                errors = io.StringIO()
+                with patch.object(sys, "argv", argv), \
+                     patch.object(run_campaign, "invoke") as invoke, \
+                     contextlib.redirect_stderr(errors), \
+                     self.assertRaises(SystemExit) as raised:
+                    run_campaign.main()
+                self.assertEqual(raised.exception.code, 2)
+                self.assertIn("invalid choice", errors.getvalue())
+                invoke.assert_not_called()
+                self.assertFalse(output.exists())
+
     def run_fake(self, mode="valid", gpu=False):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)

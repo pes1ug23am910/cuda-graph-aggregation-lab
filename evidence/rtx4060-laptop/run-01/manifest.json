@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "started_utc": "2026-10-15T20:08:11.001861+00:00",
+  "status": "completed",
+  "completed_batches": 810,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.7",
+  "executable_sha256": "f35833a0c8b549481e05dc422ef4eaae50abf343b4b2181157917d893819001f",
+  "cpu_only": false,
+  "smoke": false,
+  "backends": [
+    "naive",
+    "row_split",
+    "cusparse"
+  ],
+  "invocation_strategy": "all groups and backends per fixture process",
+  "telemetry_sampling": "before and after each fixture process; CPU campaigns record no GPU telemetry",
+  "groups": 5,
+  "calls_per_batch": 100,
+  "warmup_calls": 20,
+  "backend_order": "forward on even groups, reversed on odd groups",
+  "power_thermal_background_state": "not controlled; inspect telemetry.jsonl",
+  "matrix": {
+    "nodes": [
+      4096,
+      65536
+    ],
+    "features": [
+      32,
+      64,
+      128
+    ],
+    "families": [
+      "regular8",
+      "regular32",
+      "skewed"
+    ],
+    "seeds": [
+      7,
+      42,
+      2026
+    ]
+  },
+  "source_revision": "15602afe0cbb358c1f76e2fcf2d20ba84fda4909",
+  "source_dirty": false,
+  "source_revision_error": "",
+  "source_status_error": "",
+  "source_tree_sha256": "536d068d57727553e888f3dd96878d0923387ff08abbbbb5435136ed974132b7",
+  "source_files_sha256": {
+    "CMakeLists.txt": "b2f5a2f77689a014a05a394f74c2422c4d2fded48658b8a48af2cdd6ffb669d8",
+    "include/graphlab/core.hpp": "714f8abe022e75d1e0631bcd6d17f6d86f230947c6b0c43bfe3b4c8895a1d460",
+    "include/graphlab/cuda.hpp": "cf4d966b68c5d1e5c8e2a9f1469bce0620e38ae9307480aba1274b8fd48a4759",
+    "scripts/run_campaign.py": "5e8b92b1d428e83861f8f200757f7237a806d06211567a5b1259c1887e083c1d",
+    "scripts/summarize.py": "490de1adad703144cbd112cb256e36714e2c89aab5653698f1a81ca80407b3bb",
+    "src/core.cpp": "633781d444abf94cafba7e21f3b573e00f9b2adb08eeb9960384863d03e75777",
+    "src/cuda.cu": "97414a47ceb3c5d2f5e486e30b183bf4eca44d0efb7637fb6ad2588d37b9d325",
+    "src/main.cpp": "a2a0858e266aa737e8958b467b53e928c7a2bac6c1a0686e2e194c1a7996c507",
+    "tests/core_tests.cpp": "8dab3136fc9e9cf605bbd539da0bd16e862cfc5adeb439c264d2334a8da2ffbe",
+    "tests/test_cli.py": "89af3ce79ab8535275253e0ad759eacffd6d2e54b41d36f3710966d663e7ff32",
+    "tests/test_reporting.py": "cddccc63864e4057318bee95f2545af691ab1cd38f106fbaf2bd0f07f8be3819"
+  },
+  "campaign_id": "2621f297fef6680dfab66945c6b615a12e3aaea4e77837fd12ba54dee1de94df",
+  "environment_stdout": "{\"type\":\"environment\",\"contract\":\"csr-mean-v1\",\"cxx\":202002,\"compiler\":\"MSVC 194435227\",\"cuda_build\":true,\"gpu_available\":true,\"device\":\"NVIDIA GeForce RTX 4060 Laptop GPU\",\"error\":\"\",\"driver_version\":13030,\"runtime_version\":12090,\"cusparse_version\":12510,\"compute_major\":8,\"compute_minor\":9,\"total_bytes\":8585216000,\"free_bytes\":7451181056}\n",
+  "environment_stderr": "",
+  "environment_exit_code": 0,
+  "environment_id": "bc885b7eaf2e29d05cad85d3a2686d4dec6a1f18dc0592b0a935999780b446bc",
+  "verification_exit_code": 0,
+  "ended_utc": "2026-10-15T20:22:15.240170+00:00",
+  "exit_code": 0,
+  "artifact_sha256": {
+    "invocations.jsonl": "27c61222949c233f59743469a37f0f3dc249e93f913c5cdf1d85d9e559d8c1dc",
+    "raw.jsonl": "4dac1ef4e7050ef55d72e162d19f13136b3bbec20e29ac19bb02876b26a5d186",
+    "telemetry.jsonl": "839cdd3caeccda027aa30903ddfbde1984da3c6b2d05b5cd7fb1796ab3dec950",
+    "verification.jsonl": "843d4c924de7eb64d8547a1e624636407ff7dbaa9b91d6324e0f3581282b9019",
+    "verification.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

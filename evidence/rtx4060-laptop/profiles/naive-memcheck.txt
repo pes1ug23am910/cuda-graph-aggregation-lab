@@ -1,0 +1,8 @@
+========= COMPUTE-SANITIZER
+========= Error: Failed to initialize WDDM debugger interface. Please run EnableDebuggerInterface.bat as an administrator
+========= 
+========= Error: Device not supported. Please refer to the "Supported Devices" section of the sanitizer documentation
+========= 
+{"type":"measurement","schema":1,"status":"passed","contract":"csr-mean-v1","smoke":true,"backend":"naive","family":"skewed","seed":42,"nodes":4096,"features":64,"edges":149475,"max_degree":2048,"fingerprint":"c8d2472295e94d8e","group":0,"calls":2,"warmup":1,"path":"naive_kernel","resident_boundary":"device_normalized_aggregation","batch_total_ms":0.28569599986076355,"per_call_ms":0.14284799993038177,"preparation_ms":2593.0974000000001,"prepared_wall_ms":0.92120000000000002,"h2d_ms":0.15820799767971039,"aggregation_ms":0.19545599818229675,"d2h_ms":0.21529600024223328,"cold_initialized_runtime_wall_ms":3.6494,"generation_ms":28.532499999999999,"oracle_ms":51.4694,"device_memory_bytes":2711440,"workspace_bytes":0,"memory_budget_bytes":1073741824,"overhead_reserve_bytes":1048576,"max_abs_error":9.536743161842054e-08,"max_scaled_error":0.26000705112387246}
+========= LEAK SUMMARY: 0 bytes leaked in 0 allocations
+========= ERROR SUMMARY: 2 errors

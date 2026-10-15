@@ -1,0 +1,6 @@
+Time (%),Total Time (ns),Instances,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+78.9,780500,16,48781.3,48811.0,48556,49099,153.0,"void cusparse::csrmm_alg2_kernel<(bool)0, (bool)0, (bool)0, int, int, int, int, float, float, float, float>(T4, T4, T5, T4, int, int, cusparse::KernelCoeffs<T11>, int, int, const T4 *, const T7 *, const T6 *, const T8 *, long long, const T9 *, T4, long long, T10 *, T4, long long)"
+10.8,107035,16,6689.7,6690.0,6657,6722,26.2,"void graphlab::cuda::<unnamed>::normalize<(bool)0>(const int *, float *, unsigned long long, long long)"
+5.2,51021,16,3188.8,3201.0,3168,3201,16.1,"void cusparse::matrix_scalar_multiply_kernel<cusparse::MatrixWiseMulPolicy, (bool)1, long long, float, float>(T3, T3, T3, long long, cusparse::KernelCoeff<T4>, T5 *)"
+4.6,45353,16,2834.6,2848.0,2816,2849,16.4,"void cusparse::<unnamed>::csr_partition_kernel<int, int>(const T1 *, T2, T1, T1, T2, T2 *, T2)"
+0.5,5346,2,2673.0,2673.0,2465,2881,294.2,"graphlab::cuda::<unnamed>::set_ones(float *, unsigned long long)"

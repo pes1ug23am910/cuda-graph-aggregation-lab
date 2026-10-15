@@ -1,0 +1,15 @@
+Internal ctest changing into directory: <repository>/.tools/reproduction-build
+Test project <repository>/.tools/reproduction-build
+    Start 1: core_contract
+1/4 Test #1: core_contract ....................   Passed    0.47 sec
+    Start 2: cli_verify_cpu
+2/4 Test #2: cli_verify_cpu ...................   Passed    0.38 sec
+    Start 3: cli_fixture_roundtrip
+3/4 Test #3: cli_fixture_roundtrip ............   Passed    0.05 sec
+    Start 4: cuda_contract
+4/4 Test #4: cuda_contract ....................   Passed    1.40 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =   2.30 sec
+

@@ -1,10 +1,13 @@
 # CUDA Graph Aggregation Lab
 
-A C++20/CUDA study of incoming-neighbour mean aggregation on sparse directed graphs. It compares an explicit CUDA implementation with an equivalent cuSPARSE SpMM path, using an independent FP64 oracle and reproducible synthetic workloads.
+A C++20/CUDA study of incoming-neighbour mean aggregation on sparse directed graphs. It compares a simple CUDA kernel, one row-splitting variant, and an equivalent cuSPARSE SpMM path, using an independent FP64 oracle and reproducible synthetic workloads.
 
     Y[v,f] = sum(X[u,f] for u in incoming(v)) / degree(v)
 
 Empty neighbourhoods produce zero. This is a standalone primitive; it does not implement training, a backward pass or an entire graph neural network.
+
+
+Two complete 54-input campaigns ran on an RTX 4060 Laptop GPU, including a clean rebuild and repeat. Row splitting helped a narrow group of small skewed inputs and usually lost to the simple kernel; the [results](docs/results.md) retain all regressions and timing variation. The [evidence bundle](evidence/rtx4060-laptop/README.md) includes raw measurements, hashes and validation limits.
 
 ## Build and verify
 

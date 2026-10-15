@@ -22,6 +22,6 @@ References: [NVIDIA floating-point guidance](https://docs.nvidia.com/cuda/floati
 
 ## Library range protection
 
-Device tests found that the unmodified cuSPARSE path flushes the smallest subnormal input to zero. The adapter therefore detects nonzero features below 2^-90. Those cases use exact scaling by 2^100 before SpMM, followed by division and an explicit round-to-nearest multiplication by 2^-100 in the normalization kernel. Scaling, extra storage and normalization are included in the measured work.
+Device tests found that the unmodified cuSPARSE path flushes the smallest subnormal input to zero. The adapter therefore detects nonzero features with absolute magnitude below 2^-90. Those cases use exact scaling by 2^100 before SpMM, followed by division and an explicit round-to-nearest multiplication by 2^-100 in the normalization kernel. Scaling, extra storage and normalization are included in the measured work.
 
 Without tiny features, all inputs are multiples of at least 2^-113, so a nonzero sum divided by degree<=4096 is at least 2^-125 and remains normal. With scaling, the smallest lattice spacing becomes 2^-49 and the largest possible absolute sum is 2^112. Neither SpMM accumulation nor division underflows or overflows. Only the final downscale can underflow, so the existing half-subnormal allowance remains applicable. Zero is handled directly. The full synthetic matrix takes the ordinary unscaled library path; tiny-value tests exercise the protected path.

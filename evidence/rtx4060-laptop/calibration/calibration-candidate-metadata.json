@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-15T20:03:25.799Z",
+  "subset": {
+    "nodes": 4096,
+    "features": 64,
+    "seed": 42,
+    "families": [
+      "regular8",
+      "skewed"
+    ],
+    "groups": 5,
+    "calls": 100,
+    "warmup": 20
+  },
+  "hashes": {
+    "src/cuda.cu": "cf4f33d2ea2bc80a2fc6bba1b23d179b8c5b1deeac796a40f4c9c5122927b8ac",
+    "include/graphlab/cuda.hpp": "92c9f9bffb8391e2f8fd69e6ed1a640d30442cb381f9c8ebb87f6a349f51d4ba",
+    "src/main.cpp": "3c0b6f867dc05fd3514482b01610d61fc7af5e9ac2480b9b6b4a5a8cfd3ab50d",
+    "build-cuda/graphlab.exe": "2553ba1205d5c8bb79331deb1fb9cd1e6aadc178096249b84613381c1be8e22c"
+  }
+}

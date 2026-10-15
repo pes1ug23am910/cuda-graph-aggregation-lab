@@ -44,7 +44,8 @@ struct CheckResult {
 };
 CheckResult verify(const Graph &graph, const Oracle &reference, std::span<const float> output);
 
-// Families and random-number consumption are versioned by the fixture fingerprint prefix.
+// The fingerprint hashes the graphlab-csr-mean-v1 domain separator before fixture bytes.
+// Generator changes require updating the versioned contract and golden fingerprints.
 Graph generate(std::int64_t nodes, std::int64_t features, std::string_view family,
                std::uint64_t seed);
 // FNV-1a-64 over a canonical little-endian encoding. Identity aid, not a cryptographic hash.

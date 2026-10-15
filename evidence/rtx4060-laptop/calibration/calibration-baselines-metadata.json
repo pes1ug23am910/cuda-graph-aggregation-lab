@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-15T20:00:01.313Z",
+  "purpose": "Baseline calibration fixed before candidate implementation",
+  "subset": {
+    "nodes": 4096,
+    "features": 64,
+    "seed": 42,
+    "families": [
+      "regular8",
+      "skewed"
+    ],
+    "groups": 5,
+    "calls": 100,
+    "warmup": 20,
+    "order": "naive,cusparse on even groups; cusparse,naive on odd groups"
+  },
+  "hashes": {
+    "src/cuda.cu": "c89bc75d3775a864e9b958c5346d6b9d501a1dd209d10929bf07e6c923ba3345",
+    "include/graphlab/cuda.hpp": "781f6b0783ead55612ff882ddf2138d161db4f681ed9dbd6aeafa81972d741b0",
+    "build-cuda/graphlab.exe": "ecaf49d3b645a336e8a110641106d1bb18e98aedd82f3c9046f6cfdf19584fe6"
+  }
+}

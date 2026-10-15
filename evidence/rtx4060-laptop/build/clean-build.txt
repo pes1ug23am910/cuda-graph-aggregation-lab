@@ -1,0 +1,42 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.0
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+[1/8] Building CXX object CMakeFiles\graphlab_core.dir\src\core.cpp.obj
+[2/8] Linking CXX static library graphlab_core.lib
+[3/8] Building CXX object CMakeFiles\graphlab_core_tests.dir\tests\core_tests.cpp.obj
+[4/8] Linking CXX executable graphlab_core_tests.exe
+[5/8] Building CXX object CMakeFiles\graphlab.dir\src\main.cpp.obj
+[6/8] Building CUDA object CMakeFiles\graphlab_cuda.dir\src\cuda.cu.obj
+<repository>\.tools\reproduction-source\src\cuda.cu(61): warning #177-D: function "graphlab::cuda::<unnamed>::Stream::operator=(graphlab::cuda::<unnamed>::Stream &&) noexcept" was declared but never referenced
+      [[maybe_unused]] Stream &operator=(Stream &&other) noexcept {
+                               ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+<repository>\.tools\reproduction-source\src\cuda.cu(85): warning #177-D: function "graphlab::cuda::<unnamed>::Event::operator=(graphlab::cuda::<unnamed>::Event &&) noexcept" was declared but never referenced
+      [[maybe_unused]] Event &operator=(Event &&other) noexcept {
+                              ^
+
+<repository>\.tools\reproduction-source\src\cuda.cu(107): warning #177-D: function "graphlab::cuda::<unnamed>::Buffer::operator=(graphlab::cuda::<unnamed>::Buffer &&) noexcept" was declared but never referenced
+      [[maybe_unused]] Buffer &operator=(Buffer &&other) noexcept {
+                               ^
+
+<repository>\.tools\reproduction-source\src\cuda.cu(136): warning #177-D: function "graphlab::cuda::<unnamed>::SparseHandle::operator=(graphlab::cuda::<unnamed>::SparseHandle &&) noexcept" was declared but never referenced
+      [[maybe_unused]] SparseHandle &operator=(SparseHandle &&other) noexcept {
+                                     ^
+
+<repository>\.tools\reproduction-source\src\cuda.cu(157): warning #177-D: function "graphlab::cuda::<unnamed>::SparseMatrix::operator=(graphlab::cuda::<unnamed>::SparseMatrix &&) noexcept" was declared but never referenced
+      [[maybe_unused]] SparseMatrix &operator=(SparseMatrix &&other) noexcept {
+                                     ^
+
+<repository>\.tools\reproduction-source\src\cuda.cu(178): warning #177-D: function "graphlab::cuda::<unnamed>::DenseMatrix::operator=(graphlab::cuda::<unnamed>::DenseMatrix &&) noexcept" was declared but never referenced
+      [[maybe_unused]] DenseMatrix &operator=(DenseMatrix &&other) noexcept {
+                                    ^
+
+cuda.cu
+tmpxft_000074a0_00000000-7_cuda.cudafe1.cpp
+[7/8] Linking CXX static library graphlab_cuda.lib
+[8/8] Linking CXX executable graphlab.exe
+

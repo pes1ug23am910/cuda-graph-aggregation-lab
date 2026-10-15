@@ -1,0 +1,12 @@
+Internal ctest changing into directory: <repository>/build-cpu
+Test project <repository>/build-cpu
+    Start 1: core_contract
+1/3 Test #1: core_contract ....................   Passed    0.61 sec
+    Start 2: cli_verify_cpu
+2/3 Test #2: cli_verify_cpu ...................   Passed    0.45 sec
+    Start 3: cli_fixture_roundtrip
+3/3 Test #3: cli_fixture_roundtrip ............   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   1.09 sec

@@ -1,0 +1,13 @@
+{"type":"verification","fixture":"directed","fingerprint":"4d544934676d27a4","backend":"cpu","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"directed","fingerprint":"4d544934676d27a4","backend":"naive","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"directed","fingerprint":"4d544934676d27a4","backend":"cusparse","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"empty","fingerprint":"a9f90e41c40a5089","backend":"cpu","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"empty","fingerprint":"a9f90e41c40a5089","backend":"naive","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"empty","fingerprint":"a9f90e41c40a5089","backend":"cusparse","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"zero_edges","fingerprint":"fd474ff5fc6047e3","backend":"cpu","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"zero_edges","fingerprint":"fd474ff5fc6047e3","backend":"naive","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"zero_edges","fingerprint":"fd474ff5fc6047e3","backend":"cusparse","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"subnormal","fingerprint":"3b131e2d2284548a","backend":"cpu","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"verification","fixture":"subnormal","fingerprint":"3b131e2d2284548a","backend":"naive","status":"passed","max_abs_error":0,"max_scaled_error":0}
+{"type":"error","status":"failed","code":"runtime_error","message":"numerical_mismatch: forward-error budget exceeded index=0"}
+

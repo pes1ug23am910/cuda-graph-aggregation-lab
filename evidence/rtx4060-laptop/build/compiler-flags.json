@@ -1,0 +1,9 @@
+{
+  "source_revision": "15602afe0cbb358c1f76e2fcf2d20ba84fda4909",
+  "configuration": "Release",
+  "generator": "Ninja",
+  "architecture": "compute_89,sm_89",
+  "host_core_flags": "/DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD /W4 /fp:strict",
+  "cuda_flags": "-D_WINDOWS -Xcompiler=\" /EHsc\" -Xcompiler=\"-O2 -Ob2\" -DNDEBUG -std=c++20 \"--generate-code=arch=compute_89,code=[compute_89,sm_89]\" -Xcompiler=-MD --ftz=false --prec-div=true --prec-sqrt=true --fmad=false -lineinfo",
+  "source": "Flags transcribed from the clean build.ninja; local path fields omitted."
+}

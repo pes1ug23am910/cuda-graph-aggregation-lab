@@ -1,0 +1,38 @@
+[
+  {
+    "file": "cpu-ctest.txt",
+    "original_sha256": "067703c9196bac71e6ea7ed87184cc48d57cebfc1e27ed33a401cac5b917972e",
+    "published_sha256": "ef40a899c9c8b0a13db454ba3cf4871f417843b11369ed08e4e56c17a01adc37",
+    "redaction": "Local repository absolute-path prefix replaced with <repository>; no other changes."
+  },
+  {
+    "file": "clean-configure.txt",
+    "original_sha256": "749157810267e5b4b17289c99736fe0d78886fd9d221a9437b81bf75e10168a2",
+    "published_sha256": "dc54d0f31302538600d0b456be4bd9299d006e1290c17c0da49096c801e0031a",
+    "redaction": "Local repository absolute-path prefix replaced with <repository>; no other changes."
+  },
+  {
+    "file": "clean-build.txt",
+    "original_sha256": "25697c1abf7362870a6f42d50ca5e2e6f0a9d8a87aae582f173c66ce6a08976b",
+    "published_sha256": "06f14f99e28f2095cb5454a67e70d4389059b876d3acdfb09f96fcbb006bbe51",
+    "redaction": "Local repository absolute-path prefix replaced with <repository>; no other changes."
+  },
+  {
+    "file": "clean-ctest.txt",
+    "original_sha256": "6f13fadddcb083a8b9e52597d8add48f73b0d76ead296ec6d1e34b7d2424d83d",
+    "published_sha256": "9d093d2c41179b635ee6177587fddebe5b39cde09d5eb32933f87f64ae078280",
+    "redaction": "Local repository absolute-path prefix replaced with <repository>; no other changes."
+  },
+  {
+    "file": "final-python-tests.txt",
+    "original_sha256": "af891e95bde6e6b3f015ca4ff88e7e74817aa01ace6d753c75406501a1e15245",
+    "published_sha256": "45f84aebd6f239c81fd2ca9767aac14c2e474ad96de1227be5be13b85304cfbd",
+    "redaction": "Local repository absolute-path prefix replaced with <repository>; no other changes."
+  },
+  {
+    "file": "final-cpu-ctest.txt",
+    "original_sha256": "02840ab2697bccbe08d4bc3f35e2d1a69477e2e899307662b8fb5dc25b661c7b",
+    "published_sha256": "406da1ff3a48fea4a75de8cd8874161ccc15e162ac8b100ef233064935afa19b",
+    "redaction": "Local repository absolute-path prefix replaced with <repository>; no other changes."
+  }
+]

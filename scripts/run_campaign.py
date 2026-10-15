@@ -102,11 +102,10 @@ def main():
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--cpu-only", action="store_true")
     parser.add_argument("--backends", default="naive,row_split,cusparse",
-                        help="comma-separated backend order expected from bench --backend all")
+                        choices=["naive,row_split,cusparse"],
+                        help="fixed GPU backend order required by the campaign protocol")
     args = parser.parse_args()
     requested_backends = args.backends.split(",")
-    if not requested_backends or any(name not in {"naive", "row_split", "cusparse"} for name in requested_backends) or len(set(requested_backends)) != len(requested_backends):
-        parser.error("--backends must list unique supported GPU backend names")
     exe = args.exe.resolve()
     if not exe.is_file():
         parser.error("--exe must identify an existing executable")

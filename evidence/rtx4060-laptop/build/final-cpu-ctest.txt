@@ -1,0 +1,19 @@
+Started UTC: 2026-10-15T20:42:21.746Z
+Command: $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH; $env:GRAPHLAB_EXE = '<repository>\build-cpu\graphlab.exe'; & 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe' --test-dir '<repository>\build-cpu' -C Release --output-on-failure; exit $LASTEXITCODE
+Exit code: 0
+
+STDOUT
+Internal ctest changing into directory: <repository>/build-cpu
+Test project <repository>/build-cpu
+    Start 1: core_contract
+1/3 Test #1: core_contract ....................   Passed    0.16 sec
+    Start 2: cli_verify_cpu
+2/3 Test #2: cli_verify_cpu ...................   Passed    0.18 sec
+    Start 3: cli_fixture_roundtrip
+3/3 Test #3: cli_fixture_roundtrip ............   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   0.39 sec
+
+STDERR

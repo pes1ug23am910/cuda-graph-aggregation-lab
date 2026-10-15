@@ -35,7 +35,7 @@ Device admission counts explicit buffers, the queried library workspace and a 1 
 
 Text files begin with graphlab-csr-v1, followed by N F E, then N+1 offsets, E columns and N*F decimal FP32 values. Whitespace separates values. Exactly round-trippable decimal precision is written. The reader rejects missing or trailing data. Source indices are zero-based.
 
-Use graphlab generate --nodes 33 --features 7 --family skewed --seed 7 --output example.csr, then graphlab validate --input example.csr. The embedded fingerprint is an FNV-1a identity aid, not a cryptographic integrity claim. Campaign manifests use SHA-256 for artifacts.
+Use graphlab generate --nodes 33 --features 7 --family skewed --seed 7 --output example.csr, then graphlab validate --input example.csr. The fingerprint reported in CLI JSON is an FNV-1a identity aid, not a cryptographic integrity claim; the text fixture does not embed it. Campaign manifests use SHA-256 for artifacts.
 
 ## Evaluated row-splitting variant
 
