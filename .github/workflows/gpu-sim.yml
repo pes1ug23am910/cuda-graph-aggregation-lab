@@ -1,0 +1,86 @@
+name: gpu-sim
+
+# Optional check. The hosted runners have no GPU, so this builds the CUDA
+# backend and runs `graphlab verify --backend all` (the cuda_contract test) on
+# a simulated NVIDIA H100 (https://github.com/pantheongpu/pantheonsim). A
+# simulator cannot reproduce hardware-specific behaviour or timing, so it
+# complements runs on real GPUs.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/**"
+      - "include/**"
+      - "tests/**"
+      - "CMakeLists.txt"
+      - ".github/workflows/gpu-sim.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  gpu:
+    name: cuda_contract (CUDA 13.0 and simulated H100)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+
+      # library-path false: the build links the toolkit's cuSPARSE as usual,
+      # and the program runs under `vgpu run`.
+      - name: Set up the simulated H100 and CUDA toolkit
+        uses: pantheongpu/setup-pantheonsim@deff5781e8adfd83dec98dd5242dcbc96a564773 # v0.1.10
+        with:
+          gpu: nvidia/h100
+          cuda-toolkit: "13.0"
+          library-path: "false"
+
+      # The simulator runs PTX only and needs a shared CUDA runtime, so the
+      # architecture is set to 90-virtual and the runtime to Shared.
+      - name: Configure and build
+        run: |
+          vgpu run --preload cmake -S . -B build \
+            -DGRAPHLAB_CUDA=ON \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CUDA_ARCHITECTURES=90-virtual \
+            -DCMAKE_CUDA_RUNTIME_LIBRARY=Shared
+          vgpu run --preload cmake --build build -j3
+
+      # Same command as the cuda_contract ctest: every fixture through the CPU,
+      # naive, row_split and cuSPARSE backends against the CPU oracle; it exits
+      # 1 on a mismatch and 77 when no device is found. The guard fails on 77,
+      # a simulator error, a missing summary or a missing kernel launch.
+      - name: Run the CUDA contract on the simulated GPU
+        run: |
+          # stdout (the JSON lines) and stderr (simulator and counter lines)
+          # go to separate files so the two streams cannot interleave.
+          rc=0
+          vgpu run --counters ./build/graphlab verify --backend all > verify.jsonl 2> sim.log || rc=$?
+          cat verify.jsonl sim.log
+          [ "$rc" -eq 0 ] || { echo "::error::verify exited with $rc (77 means no device)"; exit 1; }
+          if cat verify.jsonl sim.log | grep -Eiq 'VirtualGPU error|not_run|no cuda device'; then
+            echo "::error::GPU error, missing device or skipped verification"; exit 1
+          fi
+          if grep -Fq '"status":"failed"' verify.jsonl; then echo "::error::failed case"; exit 1; fi
+          grep -Fxq '{"type":"verification_summary","status":"passed","cases":340}' verify.jsonl \
+            || { echo "::error::summary for 340 cases missing"; exit 1; }
+          for b in naive row_split cusparse; do
+            n=$(grep -Fc "\"backend\":\"$b\",\"status\":\"passed\"" verify.jsonl)
+            echo "$b: $n passed"
+            [ "$n" -eq 85 ] || { echo "::error::expected 85 passed $b cases"; exit 1; }
+          done
+          # --counters prints one line per simulated kernel launch.
+          for k in mean_naive mean_row_split; do
+            n=$(cat verify.jsonl sim.log | grep -F '[vgpu][counters]' | grep -Fc "$k" || true)
+            echo "$k: $n launches"
+            [ "$n" -gt 0 ] || { echo "::error::no launch of $k"; exit 1; }
+          done
+
+      - name: Host tests
+        run: ctest --test-dir build --output-on-failure -E cuda_contract
